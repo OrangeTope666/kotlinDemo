@@ -1,11 +1,9 @@
 package com.cgs.hb.utils
 
-import com.sun.org.apache.xpath.internal.operations.Bool
-import org.apache.commons.lang.StringUtils
+import org.apache.commons.lang3.StringUtils
 import org.apache.commons.net.ftp.FTP
 import org.apache.commons.net.ftp.FTPClient
 import org.springframework.web.multipart.MultipartFile
-import sun.net.ftp.FtpClient
 import java.io.*
 import java.util.*
 

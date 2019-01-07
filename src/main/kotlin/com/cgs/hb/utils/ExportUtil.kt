@@ -1,6 +1,6 @@
 package com.cgs.hb.utils
 
-import org.apache.commons.lang.StringUtils
+import org.apache.commons.lang3.StringUtils
 import java.io.File
 import java.io.FileInputStream
 import javax.servlet.http.HttpServletResponse
