@@ -10,8 +10,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.scheduling.annotation.EnableScheduling
 import springfox.documentation.swagger2.annotations.EnableSwagger2
 
-@SpringBootApplication(exclude = arrayOf(DataSourceAutoConfiguration::class, LiquibaseAutoConfiguration::class,
-		HibernateJpaAutoConfiguration::class))
+// exclude = [DataSourceAutoConfiguration::class, LiquibaseAutoConfiguration::class, HibernateJpaAutoConfiguration::class]
+@SpringBootApplication(exclude = [HibernateJpaAutoConfiguration::class])
 @EnableSwagger2
 @EnableCaching
 @EnableScheduling

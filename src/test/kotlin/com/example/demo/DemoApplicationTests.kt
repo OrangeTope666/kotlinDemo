@@ -1,6 +1,6 @@
 package com.example.demo
 
-import com.cgs.hb.base.APPINFO
+import com.cgs.hb.base.AppInfos
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.boot.test.context.SpringBootTest
@@ -12,9 +12,9 @@ class DemoApplicationTests {
 
 	@Test
 	fun contextLoads() {
-		var app= APPINFO("12","","","","","")
-        app.FILE_PATH = "24"
-        println(app.FILE_PATH)
+		var app= AppInfos(12L,"","","","","")
+        app.filePath = "24"
+        println(app.filePath)
 	}
 
 }

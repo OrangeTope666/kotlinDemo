@@ -11,12 +11,12 @@ import javax.transaction.Transactional
 @Transactional
 class AppService {
 
-    @Autowired
-    @Qualifier("appDao")
-    lateinit var appDo: AppDao
+    @Autowired(required = true)
+//    @Qualifier("appDao")
+    lateinit var appDao: AppDao
 
     fun saveInfo() {
         var app = AppInfos(1, "1MB", "c:\\app", "test.app","1.0.0","2018-12-01")
-        appDo.save(app)
+        appDao.save(app)
     }
 }
