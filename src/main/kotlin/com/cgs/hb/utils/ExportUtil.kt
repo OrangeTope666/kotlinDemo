@@ -14,13 +14,13 @@ class ExportUtil {
         var hzm = file.name.split("\\.")[1]
         var cType: String = map.get(hzm) as String
         if (StringUtils.isBlank(cType) || "null".equals(cType, true)
-                || "undefined".equals(cType, true) || "状态空".equals(cType)) {
+                || "undefined".equals(cType, true) || "状态空"==cType) {
             cType = "multipart/form-data"
         }
-        response.setContentType(cType)
+        response.contentType = cType
 
         var fileName = String(head.toByteArray(), charset("ISO-8859-1"))
-        response.setHeader("Content-Disposition", "attachment;filename=" + fileName)
+        response.setHeader("Content-Disposition", "attachment;filename=$fileName")
 
         var inputStream = FileInputStream(file)
         var os = response.outputStream
@@ -42,20 +42,15 @@ class ExportUtil {
 
         // 1.设置文件ContentType类型，这样设置，会自动判断下载文件类型
         var contentType = "multipart/form-data"
-        if ("excel".equals(type)) {
-            contentType = "application/vnd.ms-excel"
-        } else if ("word".equals(type)) {
-            contentType = "application/vnd.ms-word"
-        } else if ("pdf".equals(type)) {
-            contentType = "application/pdf"
-        } else if ("octet".equals(type)) {
-            contentType = "application/octet-stream"
-        } else if ("txt".equals(type)) {
-            contentType = "text/plain"
-        } else if ("png".equals(type)) {
-            contentType = "text/html;charset=utf-8"
+        when {
+            "excel" == type -> contentType = "application/vnd.ms-excel"
+            "word"==type -> contentType = "application/vnd.ms-word"
+            "pdf"==type -> contentType = "application/pdf"
+            "octet"==type -> contentType = "application/octet-stream"
+            "txt"==type -> contentType = "text/plain"
+            "png"==type -> contentType = "text/html;charset=utf-8"
         }
-        response.setContentType(contentType)
+        response.contentType = contentType
 
         var inputStream = FileInputStream(file)
         var os = response.outputStream
@@ -76,23 +71,27 @@ class ExportUtil {
         response.reset()
         var hz: String = ".xls"
         var contentType = "application/vnd.ms-excel"
-        if ("word".equals(type)) {
-            contentType = "application/vnd.ms-word"
-            hz = ".doc"
-        } else if ("pdf".equals(type)) {
-            contentType = "application/pdf"
-            hz = ".pdf"
-        } else if ("octet".equals(type)) {
+        when (type) {
+            "word" -> {
+                contentType = "application/vnd.ms-word"
+                hz = ".doc"
+            }
+            "pdf" -> {
+                contentType = "application/pdf"
+                hz = ".pdf"
+            }
+            "octet" -> {
 
 
-            contentType = "application/octet-stream"
-            hz = ""
+                contentType = "application/octet-stream"
+                hz = ""
+            }
         }
-        response.setContentType(contentType)
+        response.contentType = contentType
 
         var heads = head + hz
         var fileName = String(heads.toByteArray(), charset("ISO-8859-1"))
-        response.setHeader("Content-Disposition", "attachment;filename=" + fileName)
+        response.setHeader("Content-Disposition", "attachment;filename=$fileName")
 
         var inputStream = FileInputStream(File(path))
         var os = response.outputStream
