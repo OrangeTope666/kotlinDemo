@@ -11,7 +11,7 @@ class Dom4jUtil {
         private var mimeMap = LinkedHashMap<String, String>()
 
         fun getMimeTypeMap(): Map<String, String> {
-            if (mimeMap != null && mimeMap.size > 0) {
+            if (mimeMap.size > 0) {
                 return mimeMap
             }
             var map = LinkedHashMap<String, String>()

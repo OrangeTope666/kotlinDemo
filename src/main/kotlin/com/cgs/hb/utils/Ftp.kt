@@ -16,7 +16,7 @@ class Ftp {
             try {
                 //连接ftp
                 ftp.connect(url, port)
-                var conf = FTPClientConfig(FTPClientConfig.SYST_NT)
+                FTPClientConfig(FTPClientConfig.SYST_NT)
                 var reply = ftp.replyCode
                 if (!FTPReply.isPositiveCompletion(reply)) {
                     ftp.disconnect()

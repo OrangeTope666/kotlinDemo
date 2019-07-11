@@ -11,7 +11,7 @@ import javax.transaction.Transactional
 @Transactional
 class AppService {
 
-    @Autowired(required = true)
+//    @Autowired(required = true)
 //    @Qualifier("appDao")
     lateinit var appDao: AppDao
 

@@ -8,6 +8,7 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/demo
     username: root
     password: root
+    driver-class-name: com.mysql.jdbc.Driver
   servlet:
     multipart:
       max-file-size: 1024MB

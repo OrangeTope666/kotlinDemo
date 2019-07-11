@@ -24,21 +24,18 @@ class FileOrFileDirUtil {
 
         fun formetFileSize(fileSize: Long): String {
             var df = DecimalFormat("#.00")
-            var fs = ""
-            if (fileSize < 1024) {
-                fs = df.format(fileSize) + "B"
-            } else if (fileSize < 1048576) {
-                fs = df.format(fileSize / 1024) + "KB"
-            } else if (fileSize < 1024 * 1024 * 1024) {
-                fs = df.format(fileSize / (1024 * 1024)) + "MB"
-            } else {
-                fs = df.format(fileSize / (1024 * 1024 * 1024)) + "GB"
+            var fs: String
+            fs = when {
+                fileSize < 1024 -> df.format(fileSize) + "B"
+                fileSize < 1048576 -> df.format(fileSize / 1024) + "KB"
+                fileSize < 1024 * 1024 * 1024 -> df.format(fileSize / (1024 * 1024)) + "MB"
+                else -> df.format(fileSize / (1024 * 1024 * 1024)) + "GB"
             }
             return fs
         }
 
         fun createDir(path: String): File? {
-            var file: File? = null
+            var file: File?
             file = File(path)
             if (!(file.exists()) && !(file.isDirectory)) {
                 file.mkdirs()

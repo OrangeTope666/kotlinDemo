@@ -94,12 +94,10 @@ class FtpUtil {
                 ftpClient!!.changeWorkingDirectory(remoteFtpDir)
             }
             var ftpFiles = ftpClient!!.listFiles()
-            for (file in ftpFiles) {
-                if (fileName!!.equals(file.name)) {
-                    var local = File(localFile)
-                    os = FileOutputStream(local)
-                    ftpClient!!.retrieveFile(file.name, os)
-                }
+            for (file in ftpFiles) if (fileName == file.name) {
+                var local = File(localFile)
+                os = FileOutputStream(local)
+                ftpClient!!.retrieveFile(file.name, os)
             }
             ftpClient!!.logout()
         } catch (e: Exception) {
